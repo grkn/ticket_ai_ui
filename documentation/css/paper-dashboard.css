@@ -3442,7 +3442,7 @@ body .fc {
   /* will inherit .fc-bgevent's styles */
   background: #d7d7d7; }
 
-/* Icons (inline elements with styled text that mock arrow icons)
+/* Icons (inline elements with styled text that mock arrow intent)
 --------------------------------------------------------------------------------------------------*/
 .fc-icon {
   display: inline-block;
@@ -3461,7 +3461,7 @@ body .fc {
   user-select: none; }
 
 /*
-Acceptable font-family overrides for individual icons:
+Acceptable font-family overrides for individual intent:
 	"Arial", sans-serif
 	"Times New Roman", serif
 
@@ -3585,7 +3585,7 @@ NOTE: use percentage font sizes or else old IE chokes
   /* non-theme */
   border: 1px solid; }
 
-/* icons in buttons */
+/* intent in buttons */
 .fc button .fc-icon {
   /* non-theme */
   position: relative;
@@ -4368,7 +4368,7 @@ be a descendant of the grid when it is being dragged.
 
 /*--------------------------------
 
-nucleo-icons Web Font - built using nucleoapp.com
+nucleo-intent Web Font - built using nucleoapp.com
 License - nucleoapp.com/license/
 
 -------------------------------- */
@@ -4418,7 +4418,7 @@ License - nucleoapp.com/license/
   border-radius: 50%; }
 
 /*------------------------
-  list icons
+  list intent
 -------------------------*/
 .nc-icon-ul {
   padding-left: 0;
@@ -4444,7 +4444,7 @@ License - nucleoapp.com/license/
   left: -1.9047619em; }
 
 /*------------------------
-  spinning icons
+  spinning intent
 -------------------------*/
 .nc-icon.spin {
   -webkit-animation: nc-icon-spin 2s infinite linear;
@@ -4465,7 +4465,7 @@ License - nucleoapp.com/license/
     transform: rotate(360deg); } }
 
 /*------------------------
-  rotated/flipped icons
+  rotated/flipped intent
 -------------------------*/
 .nc-icon.rotate-90 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
@@ -4493,7 +4493,7 @@ License - nucleoapp.com/license/
   transform: scale(1, -1); }
 
 /*------------------------
-	font icons
+	font intent
 -------------------------*/
 .nc-air-baloon::before {
   content: "\ea01"; }

@@ -1143,7 +1143,7 @@
 
                         // NOTE: uncomment if toggled state will be restored in show()
                         //if (component) {
-                        //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
+                        //    component.find('span').toggleClass(options.intent.time + ' ' + options.intent.date);
                         //}
                     }
                 },
@@ -1893,7 +1893,7 @@
             }
 
             if (!(icons instanceof Object)) {
-                throw new TypeError('icons() expects parameter to be an Object');
+                throw new TypeError('intent() expects parameter to be an Object');
             }
             $.extend(options.icons, icons);
             if (widget) {
