@@ -10,8 +10,8 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Capacity</p>
-              <p class="card-title">150GB
+              <p class="card-category">Intent Count</p>
+              <p class="card-title">{{intentCount}}
                 <p>
             </div>
           </div>
@@ -19,8 +19,8 @@
       </div>
       <div class="card-footer ">
         <hr>
-        <div class="stats">
-          <i class="fa fa-refresh"></i> Update Now
+        <div class="stats" >
+          <i class="fa fa-refresh" style="cursor:pointer" (click)="fetchIntentCount()"></i> Update Now
         </div>
       </div>
     </div>
@@ -36,8 +36,8 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Revenue</p>
-              <p class="card-title">$ 1,345
+              <p class="card-category">Text Count</p>
+              <p class="card-title">{{textCount}}
                 <p>
             </div>
           </div>
@@ -46,7 +46,7 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-calendar-o"></i> Last day
+          <i class="fa fa-calendar-o"></i> All texts
         </div>
       </div>
     </div>
