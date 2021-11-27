@@ -1,0 +1,24 @@
+<div class="row">
+  <b>You can copy paste below script into your application and chat with it.</b>
+</div>
+<div class="row" style="width: 500px">{{webchat}}</div>
+<div style="position:absolute !important;bottom:0px;right:15px;">
+  <table>
+    <tr>
+      <td>
+        <button type="button" class="btn btn-info big-btn" style="width:370px"
+                data-toggle="collapse" data-target="#container" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+                [attr.aria-expanded]="!isCollapsed">
+          Ticket Bot
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <iframe id="container" width="370px" height="420px" [ngbCollapse]="isCollapsed"
+                src="http://localhost:8081/webchat"
+                style="border-top:none;border-right:none;border-bottom:none;border-left:1px solid rgb(195, 195, 195) !important;border-image:initial;"></iframe>
+      </td>
+    </tr>
+  </table>
+</div>

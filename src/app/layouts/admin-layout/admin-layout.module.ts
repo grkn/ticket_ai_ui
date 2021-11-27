@@ -10,7 +10,7 @@ import {UserComponent} from '../../pages/user/user.component';
 import {TableComponent} from '../../pages/table/table.component';
 import {TypographyComponent} from '../../pages/typography/typography.component';
 import {IntentComponent} from '../../pages/intent/intent.component';
-import {MapsComponent} from '../../pages/maps/maps.component';
+import {WebchatComponent} from '../../pages/maps/webchat.component';
 import {NotificationsComponent} from '../../pages/notifications/notifications.component';
 import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
@@ -30,7 +30,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UpgradeComponent,
     TypographyComponent,
     IntentComponent,
-    MapsComponent,
+    WebchatComponent,
     NotificationsComponent,
   ]
 })
