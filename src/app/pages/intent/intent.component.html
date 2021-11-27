@@ -1,19 +1,43 @@
 <div class="row">
-  <div *ngFor="let intent of intents" class="col-md-4">
-    <div class="card">
+  <div class="col-md-12 text-center">
+      <input placeholder="Filter by intent by name" type="text" class="form-control" (keyup)="filterIntents($event.target['value'])" name="intentName" />
+      <br/>
+      <input placeholder="Intent name" type="text" class="form-control" [(ngModel)]="intentName" name="intentName" />
+      <button class="btn btn-primary btn-round" (click)="createIntent()">Create Intent</button>
+  </div>
+  <div *ngFor="let intent of intents;let i = index" class="col-md-4">
+    <div class="card" *ngIf="intent.visible === undefined || intent.visible">
       <div class="card-header">
-        <h4 class="card-title">{{intent.name}}</h4>
-        <div>{{intent.id}}</div>
+        <div class="row">
+          <h6 class="card-title col-md-10 text-center">{{intent.name}}</h6>
+          <span class="col-md-2 text-right" style="cursor:pointer" (click)="deleteIntent(intent.name)">x</span>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">Id : {{intent.id}}</div>
+        </div>
       </div>
       <div class="card-body">
         <ul class="list-unstyled team-members">
           <li>
             <div class="row">
-              <div class="col-md-7">
-                <h6>Answers</h6>
+              <div class="col-md-12">
+                <input placeholder="Sentence" type="text" class="form-control" [(ngModel)]="sentences[i]" name="sentence" />
+                <button class="btn btn-sm btn-primary btn-round" (click)="addUtterance(intent.name, i)">Add</button>
               </div>
-              <div class="col-md-5 text-right">
-
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-12">
+                <select class="custom-select-sm col-md-12" (change)="selectSentence($event.target['value'], i)" >
+                  <option></option>
+                  <option *ngFor="let sentence of intent['sentences']">{{sentence['text']}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-sm btn-primary btn-round" (click)="deleteUtterance(i)">Remove</button>
               </div>
             </div>
           </li>
