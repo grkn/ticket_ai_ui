@@ -9,6 +9,7 @@ import { WebchatComponent } from '../../pages/maps/webchat.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import {AnswersComponent} from '../../pages/answers/answers.component';
+import {CarouselComponent} from '../../pages/answers/answer_types/carousel/carousel.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -19,5 +20,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'answers',        component: AnswersComponent },
     { path: 'chat',           component: WebchatComponent },
     { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'upgrade',        component: UpgradeComponent },
+    {path:  'carousel',       component: CarouselComponent }
 ];

@@ -16,6 +16,7 @@ import {NotificationsComponent} from '../../pages/notifications/notifications.co
 import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CarouselComponent} from '../../pages/answers/answer_types/carousel/carousel.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AnswersComponent,
     WebchatComponent,
     NotificationsComponent,
+    CarouselComponent
   ]
 })
 
