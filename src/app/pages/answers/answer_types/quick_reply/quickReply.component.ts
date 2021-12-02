@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'carousel-cmp',
-  templateUrl: 'carousel.component.html',
+  selector: 'quick-reply-cmp',
+  templateUrl: 'quickReply.component.html',
   styles: []
 })
-export class CarouselComponent implements OnInit {
-private carousels: any = [];
+export class QuickReplyComponent implements OnInit {
+private replies: any = [];
 private http: HttpClient;
 private intents: any;
 private selectedIntent: any = [];
@@ -20,21 +20,20 @@ private selectedIntent: any = [];
   this.fetchIntents();
   }
 
-  addNewCarousel() {
-  this.carousels.push({imgUrl: '', title: '', subtitle: '', buttons: [] });
+  addNewQuickReply() {
+  this.replies.push({text: '', buttons: [] });
   }
 
-  addNewButton(carousel: any) {
-    carousel.buttons.push({'url': '', name: '' });
+  addNewButton(quickReply: any) {
+    quickReply.buttons.push({'url': '', name: '' });
   }
 
-  // todo: intent !valid -> error & button and message cannot be null & buttona basildiginda inputlar silinmesin durumu?
   saveAnswer(i: number) {
     const selIntent = this.selectedIntent.find(t => t.index === i);
     const body = {
       intentId: selIntent.id,
-      message: this.carousels[i],
-      type: 'carousel'
+      message: this.replies[i],
+      type: 'quickReply'
     };
 
     this.http.post('http://localhost:8081/answers', body).toPromise()

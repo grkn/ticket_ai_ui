@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'carousel-cmp',
-  templateUrl: 'carousel.component.html',
+  selector: 'generic-buttons-cmp',
+  templateUrl: 'genericButtons.component.html',
   styles: []
 })
-export class CarouselComponent implements OnInit {
-private carousels: any = [];
+export class GenericButtonsComponent implements OnInit {
+private genericButtons: any = [];
 private http: HttpClient;
 private intents: any;
 private selectedIntent: any = [];
@@ -20,21 +20,20 @@ private selectedIntent: any = [];
   this.fetchIntents();
   }
 
-  addNewCarousel() {
-  this.carousels.push({imgUrl: '', title: '', subtitle: '', buttons: [] });
+  addNewGenericButtons() {
+  this.genericButtons.push({text: '', buttons: [] });
   }
 
-  addNewButton(carousel: any) {
-    carousel.buttons.push({'url': '', name: '' });
+  addNewButton(genericButton: any) {
+    genericButton.buttons.push({'url': '', name: '', text: '' });
   }
 
-  // todo: intent !valid -> error & button and message cannot be null & buttona basildiginda inputlar silinmesin durumu?
   saveAnswer(i: number) {
     const selIntent = this.selectedIntent.find(t => t.index === i);
     const body = {
       intentId: selIntent.id,
-      message: this.carousels[i],
-      type: 'carousel'
+      message: this.genericButtons[i],
+      type: 'genericButtons'
     };
 
     this.http.post('http://localhost:8081/answers', body).toPromise()
