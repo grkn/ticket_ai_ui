@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'generic-buttons-cmp',
@@ -7,13 +8,15 @@ import {HttpClient} from '@angular/common/http';
   styles: []
 })
 export class GenericButtonsComponent implements OnInit {
-private genericButtons: any = [];
-private http: HttpClient;
-private intents: any;
-private selectedIntent: any = [];
+  private genericButtons: any = [];
+  private http: HttpClient;
+  private intents: any;
+  private selectedIntent: any = [];
+  private toastr: ToastrService;
 
-  constructor(http: HttpClient) {
-  this.http = http;
+  constructor(http: HttpClient, toastr: ToastrService) {
+    this.http = http;
+    this.toastr = toastr;
   }
 
   ngOnInit() {
@@ -37,12 +40,38 @@ private selectedIntent: any = [];
       message: this.genericButtons[i].message,
       type: 'genericButtons'
     };
-
-    this.http.post('http://localhost:8081/answers', body).toPromise()
-      .then(response => { console.log(response); })
-      .catch(e => {
-        console.log(e);
-      })
+    if ( !body.message['text'] || body.message['text'].trim() === '' ) {
+      this.toastr.error(
+        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
+        '',
+        {
+          timeOut: 4000,
+          enableHtml: true,
+          closeButton: true,
+          toastClass: 'alert alert-danger alert-with-icon',
+          positionClass: 'toast-' + 'top' + '-' + 'center'
+        }
+      );
+    } else {
+      this.http.post('http://localhost:8081/answers', body).toPromise()
+        .then((response: any) => {
+          if (response.sent) {
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is saved.</span>',
+              '',
+              {
+                timeOut: 4000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: 'alert alert-success alert-with-icon',
+                positionClass: 'toast-' + 'top' + '-' + 'center'
+              });
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        })
+    }
   }
 
   fetchIntents() {
