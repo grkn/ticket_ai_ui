@@ -8,26 +8,31 @@
         <h5 class="card-title">Answer Type: Quick Reply</h5>
       </div>
       <div class="card-body">
+        <div class="row">
+          <h6 class="card-title col-md-10 text-center"></h6>
+          <span class="col-md-2 text-right" style="cursor:pointer" (click)="deleteAnswer(reply.id)">x</span>
+        </div>
         <form>
-          <div class="row">
-            <div class="col-md-6 pr-1">
-              <h6>Message</h6>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <label>Intent</label>
               <select class="custom-select-sm col-md-12" (change)="selectIntent($event.target['value'], i)" >
                 <option></option>
-                <option *ngFor="let intent of intents">{{intent.name}}</option>
+                <option [selected]="reply.selectedIntent.id === intent.id" *ngFor="let intent of intents">{{intent.name}}</option>
               </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <br/>
+              <h6>Message</h6>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label>Text</label>
-                <input type="text" class="form-control" [(ngModel)]="reply.text" name="text">
+                <input type="text" class="form-control" [(ngModel)]="reply.message.text" name="text">
               </div>
             </div>
           </div>
@@ -36,10 +41,10 @@
               <h6>Buttons</h6>
             </div>
             <div class="col-md-6 text-right">
-              <button type="submit" class="btn btn-primary btn-round" (click)="addNewButton(reply)">Add button</button>
+              <button type="submit" class="btn btn-primary btn-round" (click)="addNewButton(reply.message)">Add button</button>
             </div>
           </div>
-          <div class="col-md-12" *ngFor="let button of reply.buttons">
+          <div class="col-md-12" *ngFor="let button of reply.message.buttons">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -66,5 +71,4 @@
       </div>
     </div>
   </div>
-
 </div>

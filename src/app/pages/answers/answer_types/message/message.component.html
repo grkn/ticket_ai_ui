@@ -8,26 +8,31 @@
         <h5 class="card-title">Answer Type: message</h5>
       </div>
       <div class="card-body">
+        <div class="row">
+          <h6 class="card-title col-md-10 text-center"></h6>
+          <span class="col-md-2 text-right" style="cursor:pointer" (click)="deleteAnswer(message.id)">x</span>
+        </div>
         <form>
-          <div class="row">
-            <div class="col-md-6 pr-1">
-              <h6>Message</h6>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <label>Intent</label>
               <select class="custom-select-sm col-md-12" (change)="selectIntent($event.target['value'], i)" >
                 <option></option>
-                <option *ngFor="let intent of intents">{{intent.name}}</option>
+                <option [selected]="message.selectedIntent.id === intent.id" *ngFor="let intent of intents">{{intent.name}}</option>
               </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <br/>
+              <h6>Message</h6>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label>Message</label>
-                <input type="text" class="form-control" [(ngModel)]="message.message" name="message">
+                <input type="text" class="form-control" [(ngModel)]="message.message.message" name="message">
               </div>
             </div>
           </div>

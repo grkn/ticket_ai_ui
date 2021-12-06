@@ -18,10 +18,11 @@ private selectedIntent: any = [];
 
   ngOnInit() {
   this.fetchIntents();
+  this.fetchAnswers();
   }
 
   addNewTemplates() {
-  this.templates.push({ title: '', subtitle: '', buttons: [] });
+  this.templates.push({message : { title: '', subtitle: '', buttons: []}, id : '', selectedIntent : {id: ''}});
   }
 
   addNewButton(template: any) {
@@ -32,7 +33,8 @@ private selectedIntent: any = [];
     const selIntent = this.selectedIntent.find(t => t.index === i);
     const body = {
       intentId: selIntent.id,
-      message: this.templates[i],
+      intentName: selIntent.name,
+      message: this.templates[i].message,
       type: 'listTemplate'
     };
 
@@ -53,8 +55,31 @@ private selectedIntent: any = [];
       })
   }
 
+  fetchAnswers() {
+    this.http.get('http://localhost:8081/answers/listTemplate').toPromise()
+      .then(response => {
+        // tslint:disable-next-line:forin
+        for (const value in response) {
+          this.templates.push({message : response[value]['message'], id: response[value]['_id'], selectedIntent : {id : response[value]['intentId']}});
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
   selectIntent(targetElement: any, i: number) {
     const intent = this.intents.find(t => t.name === targetElement);
-    this.selectedIntent.push({index : i, id: intent.id});
+    this.selectedIntent.push({index : i, id: intent.id, name: targetElement});
+  }
+
+  deleteAnswer(temp_id: any) {
+    this.http.delete('http://localhost:8081/answers/' + temp_id).toPromise()
+      .then((response: any) => {
+        this.templates = this.templates.filter(item => item.id !== temp_id);
+      })
+      .catch(e => {
+        console.log(e);
+      })
   }
 }

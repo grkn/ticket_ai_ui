@@ -18,10 +18,11 @@ private selectedIntent: any = [];
 
   ngOnInit() {
   this.fetchIntents();
+  this.fetchAnswers();
   }
 
   addNewCarousel() {
-  this.carousels.push({imgUrl: '', title: '', subtitle: '', buttons: [] });
+  this.carousels.push({ message : {imgUrl: '', title: '', subtitle: '', buttons: [] }, id : '', selectedIntent : {id: ''}});
   }
 
   addNewButton(carousel: any) {
@@ -33,7 +34,8 @@ private selectedIntent: any = [];
     const selIntent = this.selectedIntent.find(t => t.index === i);
     const body = {
       intentId: selIntent.id,
-      message: this.carousels[i],
+      intentName: selIntent.name,
+      message: this.carousels[i].message,
       type: 'carousel'
     };
 
@@ -54,8 +56,32 @@ private selectedIntent: any = [];
       })
   }
 
+  fetchAnswers() {
+    this.http.get('http://localhost:8081/answers/carousel').toPromise()
+      .then(response => {
+        // tslint:disable-next-line:forin
+        for (const value in response) {
+          this.carousels.push({message : response[value]['message'], id: response[value]['_id'], selectedIntent : {id : response[value]['intentId']}});
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
   selectIntent(targetElement: any, i: number) {
     const intent = this.intents.find(t => t.name === targetElement);
-    this.selectedIntent.push({index : i, id: intent.id});
+    this.selectedIntent.push({index : i, id: intent.id, name: targetElement});
+    this.carousels[i]['selectedIntent'] = {index : i, id: intent.id, name: targetElement};
+  }
+
+  deleteAnswer(carousel_id: any) {
+    this.http.delete('http://localhost:8081/answers/' + carousel_id).toPromise()
+      .then((response: any) => {
+        this.carousels = this.carousels.filter(item => item.id !== carousel_id);
+      })
+      .catch(e => {
+        console.log(e);
+      })
   }
 }
