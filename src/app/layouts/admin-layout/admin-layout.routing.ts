@@ -8,6 +8,12 @@ import { IntentComponent } from '../../pages/intent/intent.component';
 import { WebchatComponent } from '../../pages/maps/webchat.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
+import {AnswersComponent} from '../../pages/answers/answers.component';
+import {CarouselComponent} from '../../pages/answers/answer_types/carousel/carousel.component';
+import {MessageComponent} from '../../pages/answers/answer_types/message/message.component';
+import {QuickReplyComponent} from '../../pages/answers/answer_types/quick_reply/quickReply.component';
+import {ListTemplateComponent} from '../../pages/answers/answer_types/list_template/listTemplate.component';
+import {GenericButtonsComponent} from '../../pages/answers/answer_types/generic_buttons/genericButtons.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -15,7 +21,13 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'table',          component: TableComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'intent',         component: IntentComponent },
+    { path: 'answers',        component: AnswersComponent },
     { path: 'chat',           component: WebchatComponent },
     { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'carousel',       component: CarouselComponent },
+    { path: 'message',        component: MessageComponent },
+    { path: 'quickReply',     component: QuickReplyComponent },
+    { path: 'listTemplate',   component: ListTemplateComponent },
+    { path: 'genericButtons', component: GenericButtonsComponent }
 ];
