@@ -35,7 +35,8 @@ export class CarouselComponent implements OnInit {
 
   // todo: intent !valid -> error & button and message cannot be null & buttona basildiginda inputlar silinmesin durumu?
   saveAnswer(i: number) {
-    const selIntent = this.selectedIntent.find(t => t.index === i);
+    const selIntent = this.carousels[i]['selectedIntent'];
+    const id = this.carousels[i]['id']
     const body = {
       intentId: selIntent.id,
       intentName: selIntent.name,

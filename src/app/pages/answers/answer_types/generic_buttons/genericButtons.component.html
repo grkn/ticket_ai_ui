@@ -41,7 +41,7 @@
               <h6>Buttons</h6>
             </div>
             <div class="col-md-6 text-right">
-              <button type="submit" class="btn btn-primary btn-round" (click)="addNewButton(genericButton)">Add button</button>
+              <button type="submit" class="btn btn-primary btn-round" (click)="addNewButton(genericButton.message)">Add button</button>
             </div>
           </div>
           <div class="col-md-12" *ngFor="let button of genericButton.message.buttons">
