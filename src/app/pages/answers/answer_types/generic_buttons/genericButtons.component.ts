@@ -33,26 +33,13 @@ export class GenericButtonsComponent implements OnInit {
   }
 
   saveAnswer(i: number) {
-    const selIntent = this.selectedIntent.find(t => t.index === i);
+    const selIntent = this.genericButtons[i]['selectedIntent'];
     const body = {
       intentId: selIntent.id,
       intentName: selIntent.name,
       message: this.genericButtons[i].message,
       type: 'genericButtons'
     };
-    if ( !body.message['text'] || body.message['text'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
       this.http.post('http://localhost:8081/answers', body).toPromise()
         .then((response: any) => {
             this.toastr.success(
@@ -69,7 +56,6 @@ export class GenericButtonsComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 
   fetchIntents() {
@@ -120,19 +106,6 @@ export class GenericButtonsComponent implements OnInit {
       message: this.genericButtons[i].message,
       type: 'genericButtons'
     };
-    if (!body.message['text'] || body.message['text'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
       this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
         .then((response: any) => {
             this.toastr.success(
@@ -150,5 +123,4 @@ export class GenericButtonsComponent implements OnInit {
           console.log(e);
         })
     }
-  }
 }

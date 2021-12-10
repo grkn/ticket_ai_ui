@@ -40,20 +40,6 @@ export class QuickReplyComponent implements OnInit {
       message: this.replies[i].message,
       type: 'quickReply'
     };
-
-    if (!body.message['text'] || body.message['text'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
       this.http.post('http://localhost:8081/answers', body).toPromise()
         .then((response: any) => {
             this.toastr.success(
@@ -70,7 +56,6 @@ export class QuickReplyComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 
   fetchIntents() {
@@ -120,19 +105,6 @@ export class QuickReplyComponent implements OnInit {
       message: this.replies[i].message,
       type: 'quickReply'
     };
-    if (!body.message['text'] || body.message['text'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
       this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
         .then((response: any) => {
             this.toastr.success(
@@ -150,5 +122,4 @@ export class QuickReplyComponent implements OnInit {
           console.log(e);
         })
     }
-  }
 }

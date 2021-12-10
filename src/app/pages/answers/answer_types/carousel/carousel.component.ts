@@ -26,14 +26,18 @@ export class CarouselComponent implements OnInit {
   }
 
   addNewCarousel() {
-  this.carousels.push({ message : {imgUrl: '', title: '', subtitle: '', buttons: [] }, id : '', selectedIntent : {id: ''}});
+  this.carousels.push({ message : [{imgUrl: '', title: '', subtitle: '', buttons: [] }], id : '', selectedIntent : {id: ''}});
+  }
+
+
+  addNewMessage(message: any) {
+    message.push({imgUrl: '', title: '', subtitle: '', buttons: []});
   }
 
   addNewButton(carousel: any) {
     carousel.buttons.push({'url': '', name: '' });
   }
 
-  // todo: intent !valid -> error & button and message cannot be null & buttona basildiginda inputlar silinmesin durumu?
   saveAnswer(i: number) {
     const selIntent = this.carousels[i]['selectedIntent'];
     const body = {
@@ -42,38 +46,22 @@ export class CarouselComponent implements OnInit {
       message: this.carousels[i].message,
       type: 'carousel'
     };
-    if (!body.message['imgUrl'] || body.message['imgUrl'].trim() === '' ||
-      !body.message['title'] || body.message['title'].trim() === '' ||
-      !body.message['subtitle'] || body.message['subtitle'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
-      this.http.post('http://localhost:8081/answers', body).toPromise()
-        .then((response: any) => {
-            this.toastr.success(
-              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is saved.</span>',
-              '',
-              {
-                timeOut: 4000,
-                closeButton: true,
-                enableHtml: true,
-                toastClass: 'alert alert-success alert-with-icon',
-                positionClass: 'toast-' + 'top' + '-' + 'center'
-              });
-        })
-        .catch(e => {
-          console.log(e);
-        })
-    }
+    this.http.post('http://localhost:8081/answers', body).toPromise()
+      .then((response: any) => {
+          this.toastr.success(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is saved.</span>',
+            '',
+            {
+              timeOut: 4000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: 'alert alert-success alert-with-icon',
+              positionClass: 'toast-' + 'top' + '-' + 'center'
+            });
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   fetchIntents() {
@@ -123,21 +111,6 @@ export class CarouselComponent implements OnInit {
       message: this.carousels[i].message,
       type: 'carousel'
     };
-    if (!body.message['imgUrl'] || body.message['imgUrl'].trim() === '' ||
-      !body.message['title'] || body.message['title'].trim() === '' ||
-      !body.message['subtitle'] || body.message['subtitle'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
       this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
         .then((response: any) => {
             this.toastr.success(
@@ -154,6 +127,5 @@ export class CarouselComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 }

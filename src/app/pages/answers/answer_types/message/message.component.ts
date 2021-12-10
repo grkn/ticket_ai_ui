@@ -25,31 +25,18 @@ export class MessageComponent implements OnInit {
   }
 
   addNewMessage() {
-    this.messages.push({ message : {message: ''}, id : '', selectedIntent : {id: ''}});
+    this.messages.push({ message : '', id : '', selectedIntent : {id: ''}});
   }
 
   saveAnswer(i: number) {
-    const selIntent = this.selectedIntent.find(t => t.index === i);
+    const selIntent = this.messages[i]['selectedIntent'];
     const body = {
       intentId: selIntent.id,
       intentName: selIntent.name,
       message: this.messages[i].message,
       type: 'message'
     };
-    if (!body.message['message'] || body.message['message'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
-      this.http.post('http://localhost:8081/answers', body).toPromise()
+    this.http.post('http://localhost:8081/answers', body).toPromise()
         .then((response: any) => {
             this.toastr.success(
               '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is saved.</span>',
@@ -65,7 +52,6 @@ export class MessageComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 
   fetchIntents() {
@@ -115,21 +101,7 @@ export class MessageComponent implements OnInit {
       message: this.messages[i].message,
       type: 'message'
     };
-
-    if (!body.message['message'] || body.message['message'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
-      this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
+    this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
         .then((response: any) => {
             this.toastr.success(
               '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is updated.</span>',
@@ -145,6 +117,5 @@ export class MessageComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 }

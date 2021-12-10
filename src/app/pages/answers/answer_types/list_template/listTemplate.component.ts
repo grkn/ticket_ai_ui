@@ -25,7 +25,11 @@ export class ListTemplateComponent implements OnInit {
   }
 
   addNewTemplates() {
-  this.templates.push({message : { title: '', subtitle: '', buttons: []}, id : '', selectedIntent : {id: ''}});
+  this.templates.push({message : [{title: '', subtitle: '', buttons: []}], id : '', selectedIntent : {id: ''}});
+  }
+
+  addNewMessage(message: any) {
+    message.push({title: '', subtitle: '', buttons: []});
   }
 
   addNewButton(template: any) {
@@ -33,29 +37,14 @@ export class ListTemplateComponent implements OnInit {
   }
 
   saveAnswer(i: number) {
-    const selIntent = this.selectedIntent.find(t => t.index === i);
+    const selIntent = this.templates[i]['selectedIntent'];
     const body = {
       intentId: selIntent.id,
       intentName: selIntent.name,
       message: this.templates[i].message,
       type: 'listTemplate'
     };
-
-    if ( !body.message['title'] || body.message['title'].trim() === '' ||
-      !body.message['subtitle'] || body.message['subtitle'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
-      this.http.post('http://localhost:8081/answers', body).toPromise()
+    this.http.post('http://localhost:8081/answers', body).toPromise()
         .then((response: any) => {
             this.toastr.success(
               '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is saved.</span>',
@@ -71,7 +60,6 @@ export class ListTemplateComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 
   fetchIntents() {
@@ -120,20 +108,6 @@ export class ListTemplateComponent implements OnInit {
       message: this.templates[i].message,
       type: 'listTemplate'
     };
-    if (!body.message['title'] || body.message['title'].trim() === '' ||
-      !body.message['subtitle'] || body.message['subtitle'].trim() === '' ) {
-      this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
-        '',
-        {
-          timeOut: 4000,
-          enableHtml: true,
-          closeButton: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-' + 'top' + '-' + 'center'
-        }
-      );
-    } else {
       this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
         .then((response: any) => {
             this.toastr.success(
@@ -150,6 +124,5 @@ export class ListTemplateComponent implements OnInit {
         .catch(e => {
           console.log(e);
         })
-    }
   }
 }
