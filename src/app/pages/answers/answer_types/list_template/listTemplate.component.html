@@ -12,7 +12,6 @@
           <h6 class="card-title col-md-10 text-center"></h6>
           <span class="col-md-2 text-right" style="cursor:pointer" (click)="deleteAnswer(template.id)">x</span>
         </div>
-        <form>
           <div class="row">
             <div class="col-md-12">
               <label>Intent</label>
@@ -32,7 +31,7 @@
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>Title</label>
-                <input type="text" class="form-control" [(ngModel)]="template.message.title" name="imgUrl">
+                <input type="text" class="form-control" [(ngModel)]="template.message.title" name="title">
               </div>
             </div>
             <div class="col-md-6 pl-1">
@@ -70,10 +69,9 @@
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round" (click)="saveAnswer(i)">Save the answer</button>
+              <button type="submit" class="btn btn-primary btn-round" (click)="template.id ? editAnswer(template.id, i) : saveAnswer(i)">{{template.id ? 'Update' : 'Save'}}</button>
             </div>
           </div>
-        </form>
       </div>
     </div>
   </div>

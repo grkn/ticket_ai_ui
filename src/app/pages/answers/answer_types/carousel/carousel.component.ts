@@ -36,7 +36,6 @@ export class CarouselComponent implements OnInit {
   // todo: intent !valid -> error & button and message cannot be null & buttona basildiginda inputlar silinmesin durumu?
   saveAnswer(i: number) {
     const selIntent = this.carousels[i]['selectedIntent'];
-    const id = this.carousels[i]['id']
     const body = {
       intentId: selIntent.id,
       intentName: selIntent.name,
@@ -60,7 +59,6 @@ export class CarouselComponent implements OnInit {
     } else {
       this.http.post('http://localhost:8081/answers', body).toPromise()
         .then((response: any) => {
-          if (response.sent) {
             this.toastr.success(
               '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is saved.</span>',
               '',
@@ -71,7 +69,6 @@ export class CarouselComponent implements OnInit {
                 toastClass: 'alert alert-success alert-with-icon',
                 positionClass: 'toast-' + 'top' + '-' + 'center'
               });
-          }
         })
         .catch(e => {
           console.log(e);
@@ -116,5 +113,47 @@ export class CarouselComponent implements OnInit {
       .catch(e => {
         console.log(e);
       })
+  }
+
+  editAnswer(id, i: number) {
+    const selIntent = this.carousels[i]['selectedIntent'];
+    const body = {
+      intentId: selIntent.id,
+      intentName: selIntent.name,
+      message: this.carousels[i].message,
+      type: 'carousel'
+    };
+    if (!body.message['imgUrl'] || body.message['imgUrl'].trim() === '' ||
+      !body.message['title'] || body.message['title'].trim() === '' ||
+      !body.message['subtitle'] || body.message['subtitle'].trim() === '' ) {
+      this.toastr.error(
+        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">You can not save the answer without message.</span>',
+        '',
+        {
+          timeOut: 4000,
+          enableHtml: true,
+          closeButton: true,
+          toastClass: 'alert alert-danger alert-with-icon',
+          positionClass: 'toast-' + 'top' + '-' + 'center'
+        }
+      );
+    } else {
+      this.http.put('http://localhost:8081/answers/' + id, body).toPromise()
+        .then((response: any) => {
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">The answer is updated.</span>',
+              '',
+              {
+                timeOut: 4000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: 'alert alert-success alert-with-icon',
+                positionClass: 'toast-' + 'top' + '-' + 'center'
+              });
+        })
+        .catch(e => {
+          console.log(e);
+        })
+    }
   }
 }
