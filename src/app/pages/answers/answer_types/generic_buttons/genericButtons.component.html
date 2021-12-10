@@ -12,70 +12,68 @@
           <h6 class="card-title col-md-10 text-center"></h6>
           <span class="col-md-2 text-right" style="cursor:pointer" (click)="deleteAnswer(genericButton.id)">x</span>
         </div>
-        <form>
-          <div class="row">
-            <div class="col-md-12">
-              <label>Intent</label>
-              <select class="custom-select-sm col-md-12" (change)="selectIntent($event.target['value'], i)" >
-                <option></option>
-                <option [selected]="genericButton.selectedIntent.id === intent.id" *ngFor="let intent of intents">{{intent.name}}</option>
-              </select>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Intent</label>
+            <select class="custom-select-sm col-md-12" (change)="selectIntent($event.target['value'], i)" >
+              <option></option>
+              <option [selected]="genericButton.selectedIntent.id === intent.id" *ngFor="let intent of intents">{{intent.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <br/>
+            <h6>Message</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Message</label>
+              <input type="text" class="form-control" [(ngModel)]="genericButton.message.text" name="text">
             </div>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <h6>Buttons</h6>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="submit" class="btn btn-primary btn-round" (click)="addNewButton(genericButton.message)">Add button</button>
+          </div>
+        </div>
+        <div class="col-md-12" *ngFor="let button of genericButton.message.buttons">
           <div class="row">
-            <div class="col-md-6 pr-1">
-              <br/>
-              <h6>Message</h6>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Button Url</label>
+                <input type="text" class="form-control" [(ngModel)]="button.url" name="url">
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Message</label>
-                <input type="text" class="form-control" [(ngModel)]="genericButton.message.text" name="text">
+                <label>Text</label>
+                <input type="text" class="form-control" [(ngModel)]="button.text" name="text">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 pr-1">
-              <h6>Buttons</h6>
-            </div>
-            <div class="col-md-6 text-right">
-              <button type="submit" class="btn btn-primary btn-round" (click)="addNewButton(genericButton.message)">Add button</button>
-            </div>
-          </div>
-          <div class="col-md-12" *ngFor="let button of genericButton.message.buttons">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Button Url</label>
-                  <input type="text" class="form-control" [(ngModel)]="button.url" name="url">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Text</label>
-                  <input type="text" class="form-control" [(ngModel)]="button.text" name="text">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 pr-1">
-                <div class="form-group">
-                  <label>Button Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="button.name" name="name">
-                </div>
+              <div class="form-group">
+                <label>Button Name</label>
+                <input type="text" class="form-control" [(ngModel)]="button.name" name="name">
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round" (click)="saveAnswer(i)">Save the answer</button>
-            </div>
+        </div>
+        <div class="row">
+          <div class="update ml-auto mr-auto">
+            <button type="submit" class="btn btn-primary btn-round" (click)="genericButton.id ? editAnswer(genericButton.id, i) : saveAnswer(i)">{{genericButton.id ? 'Update' : 'Save'}}</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
