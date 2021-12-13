@@ -88,6 +88,7 @@ export class ListTemplateComponent implements OnInit {
   selectIntent(targetElement: any, i: number) {
     const intent = this.intents.find(t => t.name === targetElement);
     this.selectedIntent.push({index : i, id: intent.id, name: targetElement});
+    this.templates[i]['selectedIntent'] = {index : i, id: intent.id, name: targetElement};
   }
 
   deleteAnswer(temp_id: any) {
