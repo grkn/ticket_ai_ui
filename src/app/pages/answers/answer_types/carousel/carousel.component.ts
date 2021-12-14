@@ -35,7 +35,7 @@ export class CarouselComponent implements OnInit {
   }
 
   addNewButton(carousel: any) {
-    carousel.buttons.push({'url': '', name: '' });
+    carousel.buttons.push({'url': '', name: '', text: '' });
   }
 
   saveAnswer(i: number) {

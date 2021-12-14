@@ -25,15 +25,15 @@ export class ListTemplateComponent implements OnInit {
   }
 
   addNewTemplates() {
-  this.templates.push({message : [{title: '', subtitle: '', buttons: []}], id : '', selectedIntent : {id: ''}});
+  this.templates.push({message : [{title: '', subtitle: '', imgUrl: '', buttons: []}], id : '', selectedIntent : {id: ''}});
   }
 
   addNewMessage(message: any) {
-    message.push({title: '', subtitle: '', buttons: []});
+    message.push({title: '', subtitle: '', imgUrl: '', buttons: []});
   }
 
   addNewButton(template: any) {
-    template.buttons.push({'url': '', name: '' });
+    template.buttons.push({'url': '', name: '', text: '' });
   }
 
   saveAnswer(i: number) {
@@ -88,6 +88,7 @@ export class ListTemplateComponent implements OnInit {
   selectIntent(targetElement: any, i: number) {
     const intent = this.intents.find(t => t.name === targetElement);
     this.selectedIntent.push({index : i, id: intent.id, name: targetElement});
+    this.templates[i]['selectedIntent'] = {index : i, id: intent.id, name: targetElement};
   }
 
   deleteAnswer(temp_id: any) {
