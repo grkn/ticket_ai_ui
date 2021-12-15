@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-body">
+          <h5 class="title">Configuration Table</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="threshold"> Threshold </label>
+            <br/>
+            <select class="custom-select-sm col-md-6" name="threshold" id="threshold" [(ngModel)]="config.threshold">
+              <option value="0.1">0.1</option>
+              <option value="0.2">0.2</option>
+              <option value="0.3">0.3</option>
+              <option value="0.4">0.4</option>
+              <option value="0.5">0.5</option>
+              <option value="0.6">0.6</option>
+              <option value="0.7">0.7</option>
+              <option value="0.8">0.8</option>
+              <option value="0.9">0.9</option>
+            </select>
+          </div>
+        </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Fallback Message</label>
+                <input type="text" class="form-control" name="fallback" [(ngModel)]="config.fallback">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round" (click)="editConfig()">Update</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
