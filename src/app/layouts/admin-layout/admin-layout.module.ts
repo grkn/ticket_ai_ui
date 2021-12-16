@@ -8,7 +8,7 @@ import {AdminLayoutRoutes} from './admin-layout.routing';
 import {DashboardComponent} from '../../pages/dashboard/dashboard.component';
 import {UserComponent} from '../../pages/user/user.component';
 import {TableComponent} from '../../pages/table/table.component';
-import {TypographyComponent} from '../../pages/typography/typography.component';
+import {ConfigComponent} from '../../pages/config/config.component';
 import {IntentComponent} from '../../pages/intent/intent.component';
 import {AnswersComponent} from '../../pages/answers/answers.component';
 import {WebchatComponent} from '../../pages/maps/webchat.component';
@@ -34,7 +34,7 @@ import {GenericButtonsComponent} from '../../pages/answers/answer_types/generic_
     UserComponent,
     TableComponent,
     UpgradeComponent,
-    TypographyComponent,
+    ConfigComponent,
     IntentComponent,
     AnswersComponent,
     WebchatComponent,

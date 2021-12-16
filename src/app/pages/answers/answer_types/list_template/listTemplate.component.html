@@ -31,6 +31,14 @@
           <div class="col-md-12">
             <h6>Message</h6>
             <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Image Url</label>
+                  <input type="text" class="form-control" [(ngModel)]="m.imgUrl" name="imgUrl">
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-6 pr-1">
                 <div class="form-group">
                   <label>Title</label>
@@ -58,6 +66,14 @@
                   <div class="form-group">
                     <label>Button Url</label>
                     <input type="text" class="form-control" [(ngModel)]="button.url" name="url">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Text</label>
+                    <input type="text" class="form-control" [(ngModel)]="button.text" name="text">
                   </div>
                 </div>
               </div>

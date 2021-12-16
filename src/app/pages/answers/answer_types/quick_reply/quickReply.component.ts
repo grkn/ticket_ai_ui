@@ -29,7 +29,7 @@ export class QuickReplyComponent implements OnInit {
   }
 
   addNewButton(quickReply: any) {
-    quickReply.buttons.push({'url': '', name: '' });
+    quickReply.buttons.push({'url': '', name: '', text: '' });
   }
 
   saveAnswer(i: number) {
