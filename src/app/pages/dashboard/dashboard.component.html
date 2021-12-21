@@ -62,8 +62,8 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Errors</p>
-              <p class="card-title">23
+              <p class="card-category">Answers</p>
+              <p class="card-title">{{totalAnswers}}
                 <p>
             </div>
           </div>
@@ -72,7 +72,7 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-clock-o"></i> In the last hour
+          <i class="fa fa-clock-o"></i> Total answers
         </div>
       </div>
     </div>
@@ -88,8 +88,8 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Followers</p>
-              <p class="card-title">+45K
+              <p class="card-category">Tickets</p>
+              <p class="card-title">{{totalTickets}}
                 <p>
             </div>
           </div>
@@ -98,7 +98,7 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-refresh"></i> Update now
+          <i class="fa fa-refresh" style="cursor:pointer" (click)="fetchTotalTicket()"></i> Update now
         </div>
       </div>
     </div>
@@ -108,62 +108,21 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h5 class="card-title">Users Behavior</h5>
-        <p class="card-category">24 Hours performance</p>
-      </div>
-      <div class="card-body ">
-        <canvas id=chartHours width="400" height="100"></canvas>
-      </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-history"></i> Updated 3 minutes ago
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <div class="card ">
-      <div class="card-header ">
-        <h5 class="card-title">Email Statistics</h5>
-        <p class="card-category">Last Campaign Performance</p>
+        <h5 class="card-title">Ticket Statistics</h5>
+        <p class="card-category">Last Ticket Performance</p>
       </div>
       <div class="card-body ">
         <canvas id="chartEmail"></canvas>
       </div>
       <div class="card-footer ">
         <div class="legend">
-          <i class="fa fa-circle text-primary"></i> Opened
-          <i class="fa fa-circle text-warning"></i> Read
-          <i class="fa fa-circle text-danger"></i> Deleted
-          <i class="fa fa-circle text-gray"></i> Unopened
+          <i class="fa fa-circle text-primary"></i> Active
+          <i class="fa fa-circle text-warning"></i> Declined
+          <i class="fa fa-circle text-danger"></i> Resolved
         </div>
         <hr>
         <div class="stats">
-          <i class="fa fa-calendar"></i> Number of emails sent
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-8">
-    <div class="card card-chart">
-      <div class="card-header">
-        <h5 class="card-title">NASDAQ: AAPL</h5>
-        <p class="card-category">Line Chart with Points</p>
-      </div>
-      <div class="card-body">
-        <canvas id="speedChart" width="400" height="100"></canvas>
-      </div>
-      <div class="card-footer">
-        <div class="chart-legend">
-          <i class="fa fa-circle text-info"></i> Tesla Model S
-          <i class="fa fa-circle text-warning"></i> BMW 5 Series
-        </div>
-        <hr/>
-        <div class="card-stats">
-          <i class="fa fa-check"></i> Data information certified
+          <i class="fa fa-calendar"></i> Number of tickets
         </div>
       </div>
     </div>
