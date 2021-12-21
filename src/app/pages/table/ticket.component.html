@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Simple Table</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th *ngFor="let header of tableData1.headerRow">
+                {{header}}
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of tableData1.dataRows">
+                <td *ngFor="let column of row">
+                  {{column}}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-round" (click)="updateTicket(row, 'RESOLVE')">Resolve</button>
+                  <button type="button" class="btn btn-primary btn-round" (click)="updateTicket(row, 'DECLINE')">Decline</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ import {AdminLayoutRoutes} from './admin-layout.routing';
 
 import {DashboardComponent} from '../../pages/dashboard/dashboard.component';
 import {UserComponent} from '../../pages/user/user.component';
-import {TableComponent} from '../../pages/table/table.component';
+import {TicketComponent} from '../../pages/table/ticket.component';
 import {ConfigComponent} from '../../pages/config/config.component';
 import {IntentComponent} from '../../pages/intent/intent.component';
 import {AnswersComponent} from '../../pages/answers/answers.component';
@@ -32,13 +32,12 @@ import {GenericButtonsComponent} from '../../pages/answers/answer_types/generic_
   declarations: [
     DashboardComponent,
     UserComponent,
-    TableComponent,
+    TicketComponent,
     UpgradeComponent,
     ConfigComponent,
     IntentComponent,
     AnswersComponent,
     WebchatComponent,
-    NotificationsComponent,
     CarouselComponent,
     MessageComponent,
     QuickReplyComponent,

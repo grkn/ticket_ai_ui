@@ -9,7 +9,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 
 export class ConfigComponent implements OnInit {
-  private config: any = [];
+  private config: any;
   private http: HttpClient;
   private toastr: ToastrService;
 
@@ -48,7 +48,7 @@ export class ConfigComponent implements OnInit {
   fetchConfig() {
     this.http.get('http://localhost:8081/config').toPromise()
       .then(response => {
-        this.config.push({fallback: response['fallback'], threshold: response['threshold']})
+        this.config = {fallback: response[0]['fallback'], threshold: response[0]['threshold']};
       })
       .catch(e => {
         console.log(e);
